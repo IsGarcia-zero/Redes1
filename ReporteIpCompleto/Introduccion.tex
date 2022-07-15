@@ -101,3 +101,89 @@ El tama\~no maximo de la cabecera IP es de 60 bytes, el tama\~no minimo de la ca
 			\includegraphics[width=\textwidth]{MapaMemoria}
 			\caption{Es el mapa de memoria de la cabecera IP}
 		\end{figure}
+\clearpage
+	\subsection{El Protocolo ICMP}
+	El est\'andar IP especifica que una implementaci\'on que cumpla las especificaciones del protocolo debe tambi\'en implementar ICMP. ICMP proporciona un medio para transferir mensajes desde los dispositivos de encaminamiento y otros computadores a un computador. En esencia, ICMP proporciona informaci\'on de realimentaci\'on sobre problemas del entorno de la comunicaci\'on. Algunas situaciones donde se utiliza son: cuando un datagrama no puede alcanzar su destino, cuando el dispositivo de encaminamiento no tiene la capacidad de almacenar temporalmente para reenviar el datagrama y cuando el dispositivo de encaminamiento indica a una estaci\'on que env\'ie el tr\'afico por una ruta m\'as corta. En la mayoria de los casos, el mensaje ICMP se env\'ia en respuesta a un datagrama, bien por un dispositivo de encaminamiento en el camino del datagrama o por el computador destino deseado. 
+\vskip 1pt
+Aunque ICMP est\'a, a todos los efectos, en el mismo nivel que IP en el conjunto de protocolos TCP/IP, es un usuario de IP. Cuando se construye un mensaje ICMP, \'este se pasa a IP, que encapsula el mensaje con una cabecera IP y despu\'es transmite el datagrama resultante de la forma habitual. Ya que los mensajes ICMP se transmiten en datagramas IP, no se garantiza su entrega y su uso no se puede considerar fiable.
+\vskip 1pt
+	En la figura 7 se nos muestra el formato de varios tipos de mensajes ICMP. Todos los mensajes de ICMP empiezan con una cabecera de 64 bits que consta de los siguientes campos: 
+	\begin{itemize}
+		\item Tipo (1 byte): especifica el tipo de mensaje ICMP.
+		\item C\'odigo(1 byte): se usa para especificar par\'ametros del mensaje que se pueden codificar en uno o unos pocos bits.
+		\item Checksum(2 bytes): suma de comprobaci\'on del mensaje ICMP entero. Se utiliza el mismo algoritmo de suma de comprobaci\'on que en IP.
+		\item Par\'ametros(4 bytes): se usa para especificar par\'ametros m\'as largos.
+	\end{itemize}
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{CabeceraICMP}
+			\caption{Formatos de mensajes ICMP}
+	\end{figure}
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{MapaMemoriaICMP}
+			\caption{Es el mapa de memoria del ICMP}
+	\end{figure}
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{ICMPSECO}
+			\caption{Un ICMP de tipo solicitud ECO}
+	\end{figure}
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{ICMPRECO}
+			\caption{Un ICMP de tipo respuesta ECO}
+	\end{figure}
+\clearpage
+	\subsection{Capa de Transporte}
+		En una arquitectura de protocolos, el protocolo de transporte se sit\'ua sobre la capa de red o de interconexi\'on, que proporciona los servicios relacionados con la red, y justo debajo de las capas de aplicaci\'on y de otros protocolos de capas superiores. El protocolo de transporte proporciona servicios a los usuarios del servicio de transporte (TS, Transport Service), como FTP, SMTP y TELNET. La entidad local de transporte se comunica con alguna otra entidad de transporte remota utilizando los servicios de alguna capa inferior, como puede ser el protocolo Internet (IP). El servicio general proporcionado por un protocolo de transporte es el transporte de datos extremo a extremo, de forma que a\'isle al usuario TS de los detalles de los sistemas de comunicaciones subyacentes.
+	\subsubsection{Sistemas Orientados a Conexi\'on}
+	Una red orientada a conexi\'on es aquella en la que inicialmente no existe conexi\'on l\'ogica entre los ETD y la red. Una red orientada a conexi\'on cuida bastante los datos del usuario. El procedimiento exige una confirmaci\'on explicita de que se ha establecida la conexi\'on, y si no es as\'i la red informa al ETD solicitante que no ha podido establecer esa conexi\'on. Las redes conectadas a conexi\'on llevan un control permanente de todas las sesiones entre distintos ETD, e intentan asegurar que los datos no se pierdan en la red. Las redes no orientadas a conexi\'on pasan directamente del estado libre al modo de transferencia de datos, finalizado el cual vuelve al estado libre. Adem\'as, las redes de este no ofrecen confirmaciones, control de flujo ni recuperaci\'on de errores aplicables a toda la red, aunque estas funciones si existen para cada enlace particular, el coste de una red no orientada a conexi\'on es mucho menor. Las redes orientas a conexi\'on suelen compararse conceptualmente con el sistema telef\'onico. El que llama sabe que se ha establecido una comunicaci\'on cuando oye hablar a alguien al otro lado de la l\'inea.
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{ABC}
+			\caption{Sistema Orientado a Conexi\'on entre Alicia y Betito}
+	\end{figure}
+\clearpage
+	\subsection{Protocolo TCP}
+		TCP proporciona un servicio de transporte sofisticado. Proporciona entrega fiable de secuencias de bytes arbitrariamente grandes por v\'ia de la abstracci\'on de la programaci\'on basada en streams. La garant\'ia de fiabilidad implica la entrega al proceso receptor de todos los datos confiados al protocolo TCP por el proceso emisor y en el mismo orden TCP est\'a orientado a conexi\'on. Antes de transferir cualquier dato, el proceso emisor y el receptor deben cooperar para establecer un canal de comunicaciones bidireccional. La conexi\'on es simplemente un acuerdo extremo a extremo para realizar una transmisi\'on fiable de datos. 
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{CabeceraTCP}
+			\caption{Es la cabecera de TCP}
+	\end{figure}
+\vskip 1pt
+	Los primeros 2 campos son el puerto de salida y el puerto destino, ambos con 2 bytes, estos simplemente nos van a decir por que puerto va a salir y por que puerto va a entrar, para este hay varias opciones, el numero de secuencia nos indica su numero, basado en secuencias de bytes de salida del primer byte del segmento; el siguiente nos indica el numero de asentamiento o reconocimiento, que es el numero de secuencia del siguiente byte que el receptor espera recibir; el offset nos indica el numero de palabras de 32 bits de la cabecera TCP, valor minimo = 5, valor maximo = 15; 6 bits reservadis 0's; la bandera nos indica si es urgente, de asentamiento, push, reset, o finalizacion; el siguiente ventana nos indica el numero de bytes que hay disponible en el buffer receptor; despues el cheksum que esta conformado por una pseudo cabecera que tiene elementos de IP y todo el segemento TCP; para al final tener el puntero urgente que nos indica la ubicaci\'on de los datos urgentes en el segmento.
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{MapaMemoriaTCP}
+			\caption{Es el mapa de memoria del Protocolo TCP}
+	\end{figure}
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{MapaMemoriaPTCP}
+			\caption{Es el mapa de memoria de la pseudocabecera para el checksum del Protocolo TCP}
+	\end{figure}
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{EjemploPTCP}
+			\caption{Un ejemplo para la realizacion del cheksum en TCP}
+	\end{figure}
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{ResolucionTCP}
+			\caption{Resolucion de ejemplo para la realizacion del cheksum en TCP}
+	\end{figure}
+\clearpage
+	\subsection{El Protocolo UDP}
+	UDP es casi una r\'eplica en el nivel de transporte IP. Cada datagrama UDP se encapsula en un paquete IP. Tiene una cabecera corta que incluye los n\'umeros de puerto origen y destino (las direcciones correspondientes a los hosts est\'an en la cabecera IP), un campo de longitud y otro que es el checksum. UDP no ofrece garant\'ia de entrega. Ya hemos comentado que los datagramas IP pueden desecharse en caso de congesti\'on o error en la red. UDP no a\~nade ning\'un mecanismo adicional de fiabilidad excepto el checksum, opcional. Si el checksum es distinto de 0, el host receptor calcula el valor de comprobaci\'on para el contenido del paquete y lo compara con el valor de comprobaci\'on para el contenido del paquete y lo compara con el valor recibido en el paquete, desech\'andolo en caso de que no coincidan. Su uso est\'a restringido a aquellas aplicaciones y servicios que no requieran una entrega fiable de mensajes simples o m\'ultiples.
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{CabeceraUDP}
+			\caption{Es la cabecera de UDP}
+	\end{figure}
+	\begin{figure}[h]
+			\centering		
+			\includegraphics[width=\textwidth]{MapaMemoriaUDP}
+			\caption{Es el mapa de memoria del Protocolo UDP}
+	\end{figure}

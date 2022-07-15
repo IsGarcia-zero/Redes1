@@ -1,0 +1,25 @@
+\section{Conclusiones}
+	A lo largo del desarrollo de esta pr\'actica que fue a lo largo del semestre, pudimos ver la importancia y diferencia de los protocolos orientados a bits y los orientados a bytes, ya que un protocolo orientado a bits es mas eficiente ya que utilizamos y aprovechamos cada uno de los bits de los mensajes sin que haya desperdicio, claro que esto es m\'as dificil sin embargo aprovechas mas los recursos, en cambio uno orientado a bytes es mas sencillo de utilizar, analizar y dise\~nar, sin embargo hay desperdicio de bits, y no uno peque\~no este suele ser muy grande; ejemplos de esto esta el protocolo LLC que es orientado a bits y el protocolo IP que es orientado a bytes.
+\vskip 1pt
+	Antes de este curso de redes ten\'ia una idea de que era el encapsulamiento y desencapsulamiento, sin embargo no sab\'ia como funcionaba, antes solo decia que se tenian que encapsular los mensajes para que lleguen al remitente y desencapsularlos para que el remitente pueda leer esos datos, sin embargo, no es suficiente, por ello en esta materia vimos como se encapsulaban y transportaban por medio de los protocolos, lo cual me parecio correcto para que seamos capaces de observar de mejor manera el proceso que siguen los protocolos.
+\vskip 1pt
+	Alguna vez te hab\'ias puesto a pensar que cuando mandas un whatsapp con un \textit{ola k ace} ocurr\'ia todo este proceso entre tu host y el host receptor? Y si despu\'es mandas \textit{?} y despues otro con un emoji \textit{:)}, es decir,  3 diferentes mensajes a cada uno de esos les pasa el encapsulamiento. Si consideraramos de manera general se transmiten por TCP y el encapsulado desde capa fisica hasta transporte, llena la siguiente tabla  y una vez llena, que puedes decir como reflexi\'on?
+\vskip 1pt
+\begin{table}[h]
+	\begin{center}
+	\begin{tabular}{| c | c | c | c |}
+			Mensaje & Cantidad de caract\'es & Bytes agregados en las cabeceras & Total de Bytes para el Mensaje \\ \hline
+			Ola k ace & 9 & 9 & 78 \\
+			? & 1 & 1  & 74 \\
+			:) & 1 & 1 & 74 \\ \hline
+	\end{tabular}
+	\caption{Mensaje y cabeceras}
+	\label{tab:mensaje}
+	\end{center}
+\end{table}
+\vskip 1pt
+	En la siguiente tabla podemos ver que la cantidad de car\'acteres es proporcional al numero de bytes a la cantidad de caracteres, ya que a cada caracter le corresponde un byte gracias a ASCII, en donde primero se convierte a un hexadecimal que es el del c\'odigo que le corresponde y en el total de bytes para el mensaje tenemos los que fueron a\~nadidos en opciones. Por ello somos capaces de observar que es importante esta parte de la encapsulacion.
+	\vskip 1pt
+		El operador $*$ es un operador aritmetico en c, el cual nos multiplica los valores que le digamos, mientras que el $<$$<$ es un operador a nivel de bit en especifico este hace un corrimiento a la izquierda, sin embargo si nosotros realizamos las operaciones T[12]$*$256 + T[13] y T[12]$<$$<$8 $|$ T[13], tenemos el mismo resultado, esto se debe a que multiplicamos el valor de nuestro unsigned char por 256 que nos moveria 8 bits a la izquierda y le sumamos el valor de T[13], mientras que el operador $<$$<$ directamente nos da el recorrimiento a la izquierda y el operador $|$ le aplica un or logico a nuestra opercion, obvio en mas eficiente en este caso los operadores a nivel de bit q los operadores aritmeticos ya que es menos trabajo para el procesador
+	\vskip 1pt
+	Si Betito se quiere comunicar con Alicia a traves de la red mas grande del mundo, que es la red de redes, se clasificaria como WAN, seria de tipo mixto, y seria por fibra optica, para comunicarse a grandes distancias, pero no es tan sencillo ya que es una gran red compuesta de redes mas peque\~nas por ejemplo podriamos decir que estan en diferente subred y necesitan de un router con el DG para comunicarse, simplemente las variables son demasiadas para poder llegar a una conclusion definitiva asi que concluimos que sin mas informacion no podemos decir exactamente todo el proceso que va a hacer.

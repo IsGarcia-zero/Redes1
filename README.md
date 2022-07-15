@@ -1,2 +1,2 @@
-# Redes1
-El de las Recargas
+# Algunos Programas y Practicas Realizados en la materia de Redes 1 en ESCOM
+En el repositorio que les dejo, se encuentran algunos Programas y practicas realizadas para la materia de Redes 1 en ESCOM, todos desarrollados con C, y los reportes desarrollados en LATEX.
